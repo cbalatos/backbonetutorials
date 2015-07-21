@@ -54,7 +54,15 @@ define([
 
     Backbone.history.start();
   };
+  
+  var firstTest =function(){
+      test('dummyLib should return the sum of the two supplied numbers.', function() {
+          equal(2, 2, 'The return should be 2.');
+          //equal(2, -1, 'The return should be -1.');
+      });	  
+  }
   return { 
-    initialize: initialize
+    initialize: initialize,
+    test: firstTest
   };
 });
