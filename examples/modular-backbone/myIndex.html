@@ -15,10 +15,18 @@
 
 	<link rel="stylesheet" href="css/styles.css">
 	<link rel="stylesheet" href="css/qunit-1.18.0.css">
-
+<!-- 
     <div id="qunit"></div>
     <div id="qunit-fixture"></div>
-    
+ -->
+     <h1 id="qunit-header">QUnit Test Suite</h1>
+    <h2 id="qunit-banner"></h2>
+    <div id="qunit-testrunner-toolbar"></div>
+    <h2 id="qunit-userAgent"></h2>
+    <ol id="qunit-tests">test markup, hidden.</ol>
+    <!--   DOM clean-up between tests -->
+    <div id="qunit-fixture"></div>
+       
 	<script data-main="js/mainTest" src="js/libs/require/require.js"></script>
 	<!-- <script data-main="build/appdistr.js" src="js/libs/require/require.js"></script> -->
 	

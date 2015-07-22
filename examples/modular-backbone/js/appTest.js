@@ -5,12 +5,17 @@ define([
   'backbone',
   'QUnit',
   'router', // Request router.js
-], function($, _, Backbone, QUnit, Router){
+  'views/home/HomeView'
+], function($, _, Backbone, QUnit, Router, HomeView){
   var initialize = function(){
     // Pass in our Router module and call it's initialize function
 
     Router.test();
 
+    var homeView = new HomeView();
+    homeView.render();
+    homeView.test();
+    
     QUnit.load();
     QUnit.start();
     

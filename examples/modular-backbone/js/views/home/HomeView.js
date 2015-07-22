@@ -18,6 +18,19 @@ define([
       var sidebarView = new SidebarView();
       sidebarView.render();
  
+    },
+    
+    test: function(){
+  	  module( "Contact Home view Tests" );
+
+  	  var view = this;
+      test('home view must contain a #page elelement', function() {
+      	// Number of Assertions we Expect
+    	  //alert(view.html())
+
+    	  equal(2, 2, 'The return should be 2.');
+          equal(2, 2, 'The return should be 2.');
+      });    	
     }
 
   });

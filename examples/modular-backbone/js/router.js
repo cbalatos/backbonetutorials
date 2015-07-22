@@ -7,7 +7,7 @@ define([
   'views/projects/ProjectsView',
   'views/contributors/ContributorsView',
   'views/footer/FooterView'
-], function($, _, Backbone, HomeView, ProjectsView, ContributorsView, FooterView) {
+], function($, _, Backbone, QUnit, HomeView, ProjectsView, ContributorsView, FooterView) {
   
   var AppRouter = Backbone.Router.extend({
     routes: {
@@ -55,10 +55,43 @@ define([
     Backbone.history.start();
   };
   
+  //The Qunit Testing Function
+  
   var firstTest =function(){
+	  var myString;
+	  module( "Contact Backbone Model Tests" ,{
+		    setup: function() {
+		        // run before
+		    	myString = "compare";
+		    }, 
+		    teardown: function() {
+		        // run after
+		    	myString = "";
+		    }
+	  });
+
+
+	  var myRouterObject = this;
       test('dummyLib should return the sum of the two supplied numbers.', function() {
-          equal(2, 2, 'The return should be 2.');
-          //equal(2, -1, 'The return should be -1.');
+      	// Number of Assertions we Expect
+          expect( 8 );
+          
+    	  equal(2, "2", 'The return should be ignoring type 2.');
+    	  notEqual (32, 2, 'The return should not be 2.');
+      
+          strictEqual(2, 2, 'The return should be  numeric 2.');
+          deepEqual(myString, "compare", 'The return should be 2.'); // ===, works on objects, arrays and primitives
+      	 
+          
+    	  ok ( true, "A true arguemnt" ); // passes if the first argument is truthy
+    	  
+    	  ok (myRouterObject.initialize, "Initialize var function exists");
+    	  ok (!myRouterObject.nothing, "nothing function ");
+    	  
+    	  throws(function() {
+    		    throw new Error( "Oh no! It's an error!" );
+    		  }, "passes - an error was thrown inside our callback");
+    	  
       });	  
   }
   return { 
