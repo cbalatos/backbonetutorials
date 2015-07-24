@@ -3,6 +3,7 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'QUnit',
   'views/home/HomeView',
   'views/projects/ProjectsView',
   'views/contributors/ContributorsView',

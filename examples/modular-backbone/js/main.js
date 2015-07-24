@@ -8,6 +8,7 @@ require.config({
     jquery: 'libs/jquery/jquery-min',
     underscore: 'libs/underscore/underscore-min',
     backbone: 'libs/backbone/backbone-min',
+    QUnit: 'libs/qunit/qunit-1.18.0',
     templates: '../templates'
   }
 

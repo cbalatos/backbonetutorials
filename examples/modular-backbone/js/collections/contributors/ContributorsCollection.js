@@ -1,8 +1,9 @@
 define([
   'underscore',
   'backbone',
+  'QUnit',
   'models/contributor/ContributorModel'
-], function(_, Backbone, ContributorModel){
+], function(_, Backbone, QUnit, ContributorModel){
 
   var ContributorsCollection = Backbone.Collection.extend({
       
@@ -11,11 +12,12 @@ define([
       initialize : function(models, options) {},
       
       url : function() {
-        return 'https://api.github.com/repos/thomasdavis/backbonetutorials/contributors';
+        return 'https://api.github.com/repos/cbalatos/backbonetutorials/contributors';
       },
     
       parse : function(data) {
           var uniqueArray = this.removeDuplicates(data.data);
+
           return uniqueArray;
       },
       
@@ -42,10 +44,11 @@ define([
           }
       
           return ArrayWithUniqueValues;
-      }        
-     
+      },        
+  
   });
 
+  
   return ContributorsCollection;
 
 });

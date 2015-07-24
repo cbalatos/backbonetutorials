@@ -2,10 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'QUnit',
   'collections/contributors/ContributorsCollection',
   'views/contributors/ContributorsListView',
   'text!templates/contributors/contributorsTemplate.html'
-], function($, _, Backbone, ContributorsCollection, ContributorsListView, contributorsTemplate){
+], function($, _, Backbone, QUnit, ContributorsCollection, ContributorsListView, contributorsTemplate){
 
   //var contributorsListView;
 
@@ -62,6 +63,28 @@ define([
     clearListView: function() {
       console.log("clearing sub view");
       contributorsListView.clearListView();
+    },
+    
+    test: function(){
+  	  var that = this;
+      var contributors = new ContributorsCollection([]);
+  	  module( "Contact Backbone Contibutors Fetch Tests");
+  	  
+  	  QUnit.test('Backbone Contibutors Fetch Async', function(assert) {
+          	// Number of Assertions we Expect
+              expect( 2 );
+              
+              var done = assert.async();
+              contributors.fetch({ success : that.onDataHandler, dataType: "jsonp" });
+              setTimeout(function() {
+              	
+            	assert.ok( (contributors.length), "Contributors Loaded" );
+            	assert.equal(contributors.length,30, "Contributors Loaded" );
+                done();
+              });
+              
+            });
+                      
     }
 
 
