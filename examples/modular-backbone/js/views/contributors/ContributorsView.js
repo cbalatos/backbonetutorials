@@ -3,10 +3,11 @@ define([
   'underscore',
   'backbone',
   'QUnit',
+  'sinon',
   'collections/contributors/ContributorsCollection',
   'views/contributors/ContributorsListView',
   'text!templates/contributors/contributorsTemplate.html'
-], function($, _, Backbone, QUnit, ContributorsCollection, ContributorsListView, contributorsTemplate){
+], function($, _, Backbone, QUnit, sinon, ContributorsCollection, ContributorsListView, contributorsTemplate){
 
   //var contributorsListView;
 
@@ -68,11 +69,11 @@ define([
     test: function(){
   	  var that = this;
       var contributors = new ContributorsCollection([]);
-  	  module( "Contact Backbone Contibutors Fetch Tests");
+  	  module( "Contact Backbone Contibutors Tests");
   	  
   	  QUnit.test('Backbone Contibutors Fetch Async', function(assert) {
           	// Number of Assertions we Expect
-              expect( 2 );
+              expect( 1 );
               
               var done = assert.async();
               contributors.fetch({ success : that.onDataHandler, dataType: "jsonp" });

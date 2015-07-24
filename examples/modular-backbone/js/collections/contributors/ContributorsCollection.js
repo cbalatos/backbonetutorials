@@ -2,8 +2,9 @@ define([
   'underscore',
   'backbone',
   'QUnit',
+  'sinon',
   'models/contributor/ContributorModel'
-], function(_, Backbone, QUnit, ContributorModel){
+], function(_, Backbone, QUnit, sinon, ContributorModel){
 
   var ContributorsCollection = Backbone.Collection.extend({
       
@@ -44,7 +45,23 @@ define([
           }
       
           return ArrayWithUniqueValues;
-      },        
+      },     
+      
+      test: function(){
+      	  var that = this;
+      	  module( "Contact Backbone Contibutors Sinon Tests");
+      	  
+      	  expect(1);
+
+      	  QUnit.test("should call all subscribers for a message exactly once", function (assert) {
+          	    var message = getUniqueString();
+          	    var spy = this.spy();
+          	    PubSub.subscribe( message, spy );
+          	    PubSub.publishSync( message, "Hello World" );
+          	    assert.ok( spy1.calledOnce, "the subscriber was called once" );
+          }); 
+                       
+        }
   
   });
 
