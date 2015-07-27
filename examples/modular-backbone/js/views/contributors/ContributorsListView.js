@@ -2,9 +2,11 @@ define([
   'jquery',
   'underscore',
   'backbone',
+  'QUnit',
+  'sinon',
   'collections/contributors/ContributorsCollection',
   'text!templates/contributors/contributorsListTemplate.html'
-], function($, _, Backbone, ContributorsCollection, contributorListTemplate){
+], function($, _, Backbone, Qunit, sinon, ContributorsCollection, contributorListTemplate){
   
   var ContributorsListView = Backbone.View.extend({
 
@@ -215,6 +217,20 @@ define([
         $("#silver-podium").show();
         $("#gold-podium").show();
 
+      },
+      
+      test: function(){
+      	  module( "Shinon Stub Tests running in cntributors vies" , {
+      		  beforeEach: function() {
+      		    // prepare something for all following tests
+      		  },
+      		  afterEach: function() {
+      		    // clean up after each test
+      		  }
+      	  }
+      	  );
+
+      	  var view = this;    	  
       }
 
   });

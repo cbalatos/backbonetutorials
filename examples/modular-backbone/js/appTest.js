@@ -21,6 +21,9 @@ define([
     var contributorsView = new ContributorsView()
     contributorsView.test()
     
+    var contributorsCollection  = new ContributorsCollection();
+    contributorsCollection.test();
+    
     QUnit.load();
     QUnit.start();
     
