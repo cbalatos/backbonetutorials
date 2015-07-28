@@ -99,6 +99,8 @@ define([
       	  );     	  
       	  
       	  QUnit.test("checking stubs", function (assert) {
+      		  	// stub the jquery getJSON function
+      		    //another great possibility is the fake XMLHttpRequest  
 			  	view.ajaxStubReturnValue = [{title:"This is a stub"}];
     		  	view.ajaxStub = sinon.stub(jQuery, "getJSON");
       		  	view.ajaxStub.returns(view.ajaxStubReturnValue);
@@ -106,16 +108,50 @@ define([
 
           		  var response = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/contributors" );
           		  assert.deepEqual( response,  view.ajaxStubReturnValue , " Ajax call must return the stubbed return value" );
+          		  
       		  	
  
     	  }); 
       	  
-      	  QUnit.test("checking mocks", function (assert) {
+      	  var server, clock;
+      	  module( "Shinon Faking the Server Tests" , {
+      		  beforeEach: function() {
+      			server = sinon.fakeServer.create();
+      			
+      			//fake timer 
+      			clock = sinon.useFakeTimers();
+      		  },
+      		  afterEach: function() {
+      			server.restore();
+      			clock.restore()
+      		  }
+      	  }
+      	  );        	  
+      	  
+      	  QUnit.test("faking the server", function (assert) {
       		  
   		  	expect (0);
-
-
-  	  }); 
+  		  	var response = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/contributors" );
+  		    // This is part of the FakeXMLHttpRequest API
+  		  	//Be carefull the respond is defined after the ajax call
+  		    server.requests[0].respond(
+  		        200,
+  		        { "Content-Type": "application/json" },
+  		        JSON.stringify([{ id: 1, text: "Provide examples", done: true }])
+  		    );   		    
+  		    
+  		    alert(JSON.stringify(response) + " date is "+(new Date()));
+  		    clock.tick(1000000); // Tick the clock ahead ms milliseconds
+  		    var response2 = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/coddd" );
+  		    server.requests[1].respond(
+  	  		        200,
+  	  		        { "Content-Type": "application/json" },
+  	  		        JSON.stringify([{ id: 1, text: "The second  examples", done: true }])
+  	  		    ); 
+  		    
+  		    alert(JSON.stringify(response2)+ + " date is "+(new Date()));  // observe how time passes by
+  		    
+      	  }); 
         }
   
   });
