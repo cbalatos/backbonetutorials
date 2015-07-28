@@ -52,17 +52,9 @@ define([
       },
       
       test: function(){
-      	  module( "Shinon Tests" , {
-      		  beforeEach: function() {
-      		    // prepare something for all following tests
-      		  },
-      		  afterEach: function() {
-      		    // clean up after each test
-      		  }
-      	  }
-      	  );
-
       	  var view = this;
+      	  
+      	  module( "Shinon Tests"   );
       	  
       	  QUnit.test("spying on a function", function (assert) {
 
@@ -72,7 +64,7 @@ define([
       		  	sinon.spy(view, "printMessage");
         	    var returnMessage = view.printMessage(message);
         	    var secondReturnMessage = view.printMessage(secondMessage);
-        	    expect (7);
+        	    expect (6);
         	    assert.ok( view.printMessage.calledTwice, "the printMessage was called once" );
         	    assert.ok( view.printMessage.calledWith( "how about that"  ));
         	    assert.equal( view.printMessage.getCall(0).args[0], "how about that" );
@@ -94,12 +86,28 @@ define([
 
 
           });    	
+      	  module( "Shinon Stub Tests" , {
+      		  beforeEach: function() {
+
+      		  },
+      		  afterEach: function() {
+      			  //restore the initial getJSON functionality if it is overriden
+      			if (jQuery.getJSON.restore) 
+      				jQuery.getJSON.restore();
+      		  }
+      	  }
+      	  );     	  
       	  
       	  QUnit.test("checking stubs", function (assert) {
-	  
-    		  	expect (0);
+			  	view.ajaxStubReturnValue = [{title:"This is a stub"}];
+    		  	view.ajaxStub = sinon.stub(jQuery, "getJSON");
+      		  	view.ajaxStub.returns(view.ajaxStubReturnValue);
+  		  		expect (1);   		  	
 
-
+          		  var response = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/contributors" );
+          		  assert.deepEqual( response,  view.ajaxStubReturnValue , " Ajax call must return the stubbed return value" );
+      		  	
+ 
     	  }); 
       	  
       	  QUnit.test("checking mocks", function (assert) {
