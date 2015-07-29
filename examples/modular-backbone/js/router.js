@@ -10,6 +10,8 @@ define([
   'views/footer/FooterView'
 ], function($, _, Backbone, QUnit, HomeView, ProjectsView, ContributorsView, FooterView) {
   
+ 'use strict';
+	
   var AppRouter = Backbone.Router.extend({
     routes: {
       // Define some URL routes

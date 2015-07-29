@@ -9,7 +9,8 @@ define([
   'text!templates/contributors/contributorsTemplate.html'
 ], function($, _, Backbone, QUnit, sinon, ContributorsCollection, ContributorsListView, contributorsTemplate){
 
-  //var contributorsListView;
+	// a pragma that instructs browser to use ECMA 262-5 strict mode for js syntax
+	  'use strict';
 
   var ContributorsView = Backbone.View.extend({
     

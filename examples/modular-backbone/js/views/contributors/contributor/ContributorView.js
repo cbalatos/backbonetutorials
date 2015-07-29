@@ -3,7 +3,9 @@ define([
   'backbone',
   'models/contributor/ContributorModel'
 ], function(_, Backbone, ContributorModel){    
-    
+	// a pragma that instructs browser to use ECMA 262-5 strict mode for js syntax
+	  'use strict';
+	  
     var ContributorView = Backbone.View.extend({
         tagName : "li",
         render : function() {

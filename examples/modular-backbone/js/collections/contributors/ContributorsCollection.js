@@ -6,6 +6,9 @@ define([
   'models/contributor/ContributorModel'
 ], function(_, Backbone, QUnit, sinon, ContributorModel){
 
+	// a pragma that instructs browser to use ECMA 262-5 strict mode for js syntax
+  'use strict';
+
   var ContributorsCollection = Backbone.Collection.extend({
       
       model: ContributorModel,
@@ -31,7 +34,7 @@ define([
           
           var objectCounter = {};
           
-          for (i = 0; i < length; i++) {
+          for (var i = 0; i < length; i++) {
           
               var currentMemboerOfArrayKey = JSON.stringify(myArray[i]);
               var currentMemboerOfArrayValue = myArray[i];
