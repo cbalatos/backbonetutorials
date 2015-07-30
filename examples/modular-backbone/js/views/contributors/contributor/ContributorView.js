@@ -47,6 +47,6 @@ define([
         
     });
 
-    return ContributorModel;
+    return ContributorView;
 
 }); 

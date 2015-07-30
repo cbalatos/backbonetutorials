@@ -8,9 +8,12 @@ define([
   'views/home/HomeView',
   'views/contributors/ContributorsView',
   'collections/contributors/ContributorsCollection',
-  'qunitTests/AboutModels'
-], function($, _, Backbone, QUnit, Router, HomeView, ContributorsView, ContributorsCollection, AboutModels){
+  'qunitTests/AboutModels',
+  'qunitTests/AboutViews'
+], function($, _, Backbone, QUnit, Router, HomeView, ContributorsView, ContributorsCollection, AboutModels, AboutViews){
   var initialize = function(){
+	  
+	//Initial Qunit and sinon tests  
     // Pass in our Router module and call it's initialize function
 
     Router.test();
@@ -26,7 +29,10 @@ define([
     contributorsCollection.test();
     
     
+    /* The correct Qunit Test Pattern for Backbone Starts Here */
+    
     AboutModels.contributorModelTest();
+    AboutViews.contributorViewTest();
     
     QUnit.load();
     QUnit.start();

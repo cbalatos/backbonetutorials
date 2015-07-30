@@ -4,6 +4,20 @@
      *     Attributes can be set and retrieved correctly
      *     Changes to state correctly fire off custom events where needed
      *     Validation rules are correctly enforced
+     *     
+     * For our views we want to ensure:
+     *     They are being correctly tied to a DOM element when created
+     *     They can render, after which the DOM representation of the view should be visible
+     *     They support wiring up view methods to DOM elements    
+     *     One could also take this further and test that user interactions with the view correctly result in 
+     *     any models that need to be changed being updated correctly.
+     *     
+     * For events we may want to test different use casesd:
+     *     Extending plain objects to support custom events
+     *     Binding and triggering custom events on objects
+     *     Passing along arguments to callbacks when events are triggered
+     *     Binding a passed context to an event callback
+     *     Removing custom events
      */
 
 define([
