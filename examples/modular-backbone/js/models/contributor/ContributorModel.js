@@ -16,9 +16,12 @@ define([
 	      
        // this.on('change', this.updateDerivedAttributes, this);
     },
-    test: function(){
-    	
-    }
+
+    validate: function(attrs) {
+        if (attrs.hasOwnProperty('done') && !_.isBoolean(attrs.done)) {
+            return 'ContributorModel.done must be a boolean value.';
+        }
+    },
 
   });
 

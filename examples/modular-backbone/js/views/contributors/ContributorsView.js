@@ -74,7 +74,7 @@ define([
   	  
   	  QUnit.test('Backbone Contibutors Fetch Async', function(assert) {
           	// Number of Assertions we Expect
-              expect( 1 );
+              expect( 2 );
               
               var done = assert.async();
               contributors.fetch({ success : that.onDataHandler, dataType: "jsonp" });
