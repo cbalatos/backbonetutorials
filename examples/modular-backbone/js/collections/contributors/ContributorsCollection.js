@@ -20,6 +20,7 @@ define([
       },
     
       parse : function(data) {
+    	  alert(JSON.stringify(data.data))
           var uniqueArray = this.removeDuplicates(data.data);
 
           return uniqueArray;
@@ -142,7 +143,6 @@ define([
   		        JSON.stringify([{ id: 1, text: "Provide examples", done: true }])
   		    );   		    
   		    
-  		    alert(JSON.stringify(response) + " date is "+(new Date()));
   		    clock.tick(1000000); // Tick the clock ahead ms milliseconds
   		    var response2 = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/coddd" );
   		    server.requests[1].respond(
@@ -150,8 +150,7 @@ define([
   	  		        { "Content-Type": "application/json" },
   	  		        JSON.stringify([{ id: 1, text: "The second  examples", done: true }])
   	  		    ); 
-  		    
-  		    alert(JSON.stringify(response2)+ + " date is "+(new Date()));  // observe how time passes by
+
   		    
       	  }); 
         }

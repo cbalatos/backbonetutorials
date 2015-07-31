@@ -12,13 +12,15 @@ define([
 	'use strict'; 
 	var contributorsCollectionTest = function(){	 
 
-		var cons;
+		var cons, server;
 		QUnit.module('About Contributors Collection', {
       		  beforeEach: function() {
       			 cons = new ContributorsCollection();
+       			 server = sinon.fakeServer.create();
       		  },
       		  afterEach: function() {
       			cons = null;
+      			server.restore();
       		  }
       	  });
 
@@ -128,6 +130,48 @@ define([
   			assert.equal(cons.length, 2); 			
   			
 		});
+		   	  
+  	  
+  	  QUnit.test("About Contributors Collection Checking the server integration", function (assert) {
+  		  
+		  	expect (1);
+
+		  	//var response = jQuery.getJSON( "https://api.github.com/repos/cbalatos/backbonetutorials/contributors" );
+		    // This is part of the FakeXMLHttpRequest API
+		  	//Be carefull the respond is defined after the ajax call
+
+		    server.respondWith(
+		        [200,
+		        { "Content-Type": "application/json" },
+		        JSON.stringify({"data": [
+		            { "login": "cbalatos",
+				      "id": 416305,
+				      "avatar_url": "https://avatars.githubusercontent.com/u/416209?v=3",
+				      "gravatar_id": "",
+				      "url": "https://api.github.com/users/thomasdavis",
+				      "html_url": "https://github.com/thomasdavis",
+				      "followers_url": "https://api.github.com/users/thomasdavis/followers",
+				      "following_url": "https://api.github.com/users/thomasdavis/following{/other_user}",
+				      "gists_url": "https://api.github.com/users/thomasdavis/gists{/gist_id}",
+				      "starred_url": "https://api.github.com/users/thomasdavis/starred{/owner}{/repo}",
+				      "subscriptions_url": "https://api.github.com/users/thomasdavis/subscriptions",
+				      "organizations_url": "https://api.github.com/users/thomasdavis/orgs",
+				      "repos_url": "https://api.github.com/users/thomasdavis/repos",
+				      "events_url": "https://api.github.com/users/thomasdavis/events{/privacy}",
+				      "received_events_url": "https://api.github.com/users/thomasdavis/received_events",
+				      "type": "User",
+				      "site_admin": false,
+				      "contributions": 346 }
+		            ]}) 
+		            ]
+		    );   	
+		  	cons.fetch();
+		  	alert(server.requests.length)
+		    alert(cons.length)
+		    
+
+		    
+  	  }); 
 		
 	};
 	
