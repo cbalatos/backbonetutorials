@@ -31,7 +31,6 @@ define([
           // I was hoping underscore's _uniq would work here but it only seems to work for single values not objects               
           var length = myArray.length;
           var ArrayWithUniqueValues = [];
-          
           var objectCounter = {};
           
           for (var i = 0; i < length; i++) {

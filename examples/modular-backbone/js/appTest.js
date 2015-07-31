@@ -9,8 +9,9 @@ define([
   'views/contributors/ContributorsView',
   'collections/contributors/ContributorsCollection',
   'qunitTests/AboutModels',
+  'qunitTests/AboutCollections',
   'qunitTests/AboutViews'
-], function($, _, Backbone, QUnit, Router, HomeView, ContributorsView, ContributorsCollection, AboutModels, AboutViews){
+], function($, _, Backbone, QUnit, Router, HomeView, ContributorsView, ContributorsCollection, AboutModels, AboutCollections, AboutViews){
   var initialize = function(){
 	  
 	//Initial Qunit and sinon tests  
@@ -33,6 +34,8 @@ define([
     
     AboutModels.contributorModelTest();
     AboutViews.contributorViewTest();
+    
+    AboutCollections.contributorsCollectionTest();
     
     QUnit.load();
     QUnit.start();

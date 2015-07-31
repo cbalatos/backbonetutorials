@@ -4,7 +4,10 @@
      *     Attributes can be set and retrieved correctly
      *     Changes to state correctly fire off custom events where needed
      *     Validation rules are correctly enforced
-     *     
+     * For Collections
+     *     New model instances can be added as both objects and arrays
+     *     Changes to models result in any necessary custom events being fired
+     *     A url property for defining the URL structure for models is correctly defined
      * For our views we want to ensure:
      *     They are being correctly tied to a DOM element when created
      *     They can render, after which the DOM representation of the view should be visible
